@@ -1,23 +1,36 @@
+<script setup>
+import { format } from "date-fns";
+const props = defineProps({
+  post: {
+    required: true,
+    type: Object,
+  },
+});
+</script>
+
 <template>
   <div class="post-container py-8">
-    <h3 class="text-3xl font-bold">Title Of post</h3>
+    <h3 class="text-3xl font-bold">
+      <NuxtLink :to="`/posts/${props.post.id}`">
+        {{ props.post.title }}
+      </NuxtLink>
+    </h3>
     <div class="post-meta text-gray-700 flex items-center space-x-2">
-      <div>Feb 2, 2022</div>
+      <div>{{ format(new Date(props.post.created_at), "MMMM dd yyyy") }}</div>
       <div>&middot;</div>
-      <div>John Rush</div>
+      <div>{{ props.post.user.name }}</div>
     </div>
 
-    <div class="post-preview leading-relaxed mt-4">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, omnis.
-      Reiciendis laudantium, fugit voluptas eligendi eaque quisquam, nihil
-      beatae quaerat ipsa fugiat sapiente incidunt distinctio. Temporibus
-      reiciendis dignissimos eaque veritatis.
+    <div class="post-preview leading-relaxed mt-4 line-clamp-3">
+      {{ props.post.body }}
     </div>
 
-    <div
-      class="mt-4 bg-blue-700 hover:bg-blue-800 text-white rounded inline-block px-4 py-2"
-    >
-      <NuxtLink :to="`/posts/1`"> Read More </NuxtLink>
-    </div>
+    <NuxtLink :to="`/posts/${props.post.id}`">
+      <div
+        class="mt-4 bg-blue-700 hover:bg-blue-800 text-white rounded inline-block px-4 py-2"
+      >
+        Read More
+      </div>
+    </NuxtLink>
   </div>
 </template>
