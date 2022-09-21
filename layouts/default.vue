@@ -16,6 +16,14 @@ const navArr = [
     label: "Create",
     to: "/create",
   },
+  {
+    label: "Profile",
+    to: "/profile",
+  },
+  {
+    label: "Login",
+    to: "/login",
+  },
 ];
 
 const title = useState("title", () => "Nuxt3 Blog");
@@ -26,7 +34,7 @@ const title = useState("title", () => "Nuxt3 Blog");
     <nav class="bg-white shadow text-lg p-6">
       <div class="mx-auto flex items-center justify-between px-6">
         <div>
-          <NuxtLink to="/"> Logo</NuxtLink>
+          <NuxtLink to="/">Nuxt Blogs</NuxtLink>
         </div>
 
         <ul class="flex space-x-12">
